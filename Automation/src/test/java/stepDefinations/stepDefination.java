@@ -3,6 +3,8 @@ package stepDefinations;
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.*;
 
+import java.io.FileNotFoundException;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -29,17 +31,18 @@ public class stepDefination extends Utils{
 	Utils reqSpec = new Utils();
 
 	@Given("Add Place Payload")
-	public void add_Place_Payload() {
+	public void add_Place_Payload() throws FileNotFoundException {
 	
 		
-		ResponseSpecification resp = new ResponseSpecBuilder().expectStatusCode(200).expectContentType(ContentType.JSON)
-				.build();
-
+		
 		req = given().spec(requestSpecification()).body(testData.addPlacePayload());
 	}
 
 	@When("user calls {string} with Post request")
 	public void user_calls_with_Post_request(String string) {
+		ResponseSpecification resp = new ResponseSpecBuilder().expectStatusCode(200).expectContentType(ContentType.JSON)
+				.build();
+
 		rs = req.when().post("/maps/api/place/add/json");
 	}
 
@@ -51,10 +54,10 @@ public class stepDefination extends Utils{
 	}
 
 	@Then("{string} in response body is {string}")
-	public void in_response_body_is(String actualStatus1, String expStatus) {
-		System.out.println("Actual status is: " + respJson.getString(actualStatus1));
-		respJson.getString(actualStatus1);
-		assertEquals(respJson.getString(actualStatus1), expStatus);
+	public void in_response_body_is(String responseField, String expResponce) {
+		System.out.println("Actual status is: " + respJson.getString(responseField));
+		respJson.getString(responseField);
+		assertEquals(respJson.getString(responseField), expResponce);
 	}
 
 }
