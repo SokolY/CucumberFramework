@@ -15,61 +15,46 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import pojo.AddPlaceRequest;
 import pojo.Location;
+import recources.TestDataBuild;
+import recources.Utils;
 
 //@RunWith(Cucumber.class)
-public class stepDefination {
+public class stepDefination extends Utils{
 
 	RequestSpecification req;
 	Response rs;
 	String parsedResp;
 	JsonPath respJson;
-	
-@Given("Add Place Payload")
-public void add_Place_Payload() {
-	String[] tp = {"shoe park", "shop"};
-	
-	AddPlaceRequest addPlace = new AddPlaceRequest();
-	Location location = new Location();
-	location.setLat(-38.383494);
-	location.setLng(33.427362);
-	
-	addPlace.setLocation(location);
-	addPlace.setAccuracy(30);
-	addPlace.setName("Frontline house");
-	addPlace.setPhone_number("(+91) 983 893 3937");
-	addPlace.setAddress("29, side layout, cohen 09");
-	addPlace.setTypes(tp);
-	addPlace.setWebsite("http://google.com");
-	addPlace.setLanguage("French-IN");
-	
-	
-	RequestSpecification reqbuild = new RequestSpecBuilder().setBaseUri("https://rahulshettyacademy.com").addQueryParam("key", "qaclick123").
-			setContentType(ContentType.JSON).build();
-	ResponseSpecification resp = new ResponseSpecBuilder().expectStatusCode(200).expectContentType(ContentType.JSON).build();
-	
-	req = given().spec(reqbuild).
-			body(addPlace);
-}
+	TestDataBuild testData = new TestDataBuild();
+	Utils reqSpec = new Utils();
 
-@When("user calls {string} with Post request")
-public void user_calls_with_Post_request(String string) {
-	rs = req.
-			when().post("/maps/api/place/add/json");
-}
+	@Given("Add Place Payload")
+	public void add_Place_Payload() {
+	
+		
+		ResponseSpecification resp = new ResponseSpecBuilder().expectStatusCode(200).expectContentType(ContentType.JSON)
+				.build();
 
+		req = given().spec(requestSpecification()).body(testData.addPlacePayload());
+	}
 
-@Then("the API call got success with status code {int}")
-public void the_API_call_got_success_with_status_code(Integer int1) {
-	parsedResp = rs.then().assertThat().statusCode(200).extract().response().asString();
-	respJson = new JsonPath(parsedResp);
-	System.out.println(parsedResp);
-}
+	@When("user calls {string} with Post request")
+	public void user_calls_with_Post_request(String string) {
+		rs = req.when().post("/maps/api/place/add/json");
+	}
 
-@Then("{string} in response body is {string}")
-public void in_response_body_is(String actualStatus1, String expStatus) {
-	System.out.println("Actual status is: " + respJson.getString(actualStatus1));
-	respJson.getString(actualStatus1);
-	assertEquals(respJson.getString(actualStatus1), expStatus);
-}
+	@Then("the API call got success with status code {int}")
+	public void the_API_call_got_success_with_status_code(Integer int1) {
+		parsedResp = rs.then().assertThat().statusCode(200).extract().response().asString();
+		respJson = new JsonPath(parsedResp);
+		System.out.println(parsedResp);
+	}
+
+	@Then("{string} in response body is {string}")
+	public void in_response_body_is(String actualStatus1, String expStatus) {
+		System.out.println("Actual status is: " + respJson.getString(actualStatus1));
+		respJson.getString(actualStatus1);
+		assertEquals(respJson.getString(actualStatus1), expStatus);
+	}
 
 }
