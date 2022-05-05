@@ -4,6 +4,7 @@ import static io.restassured.RestAssured.given;
 import static org.junit.Assert.*;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -31,7 +32,7 @@ public class stepDefination extends Utils{
 	Utils reqSpec = new Utils();
 
 	@Given("Add Place Payload")
-	public void add_Place_Payload() throws FileNotFoundException {
+	public void add_Place_Payload() throws IOException {
 	
 		
 		
