@@ -12,11 +12,11 @@ Multiparts:		<none>
 Body:
 {
     "accuracy": 30,
-    "name": "Frontline house",
+    "name": "Dacha",
     "phone_number": "(+91) 983 893 3937",
     "address": "29, side layout, cohen 09",
-    "website": "http://google.com",
-    "language": "French-IN",
+    "website": "http://ukr.com",
+    "language": "Ukrainian - UA",
     "location": {
         "lat": -38.383494,
         "lng": 33.427362
@@ -27,7 +27,7 @@ Body:
     ]
 }
 HTTP/1.1 200 OK
-Date: Thu, 05 May 2022 09:16:24 GMT
+Date: Thu, 05 May 2022 14:50:37 GMT
 Server: Apache/2.4.41 (Ubuntu)
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Methods: POST
@@ -40,8 +40,8 @@ Content-Type: application/json;charset=UTF-8
 
 {
     "status": "OK",
-    "place_id": "62f7171063c8f1d256a9d9668479a173",
+    "place_id": "41e8d73a414d0569ad2bf20148efe450",
     "scope": "APP",
-    "reference": "86f8d38693c598964c1edda84c90e19d86f8d38693c598964c1edda84c90e19d",
-    "id": "86f8d38693c598964c1edda84c90e19d"
+    "reference": "97bea1f476926654880dd297b3c5de7b97bea1f476926654880dd297b3c5de7b",
+    "id": "97bea1f476926654880dd297b3c5de7b"
 }

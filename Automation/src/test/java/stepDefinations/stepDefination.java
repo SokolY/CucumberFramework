@@ -31,14 +31,18 @@ public class stepDefination extends Utils{
 	TestDataBuild testData = new TestDataBuild();
 	Utils reqSpec = new Utils();
 
-	@Given("Add Place Payload")
-	public void add_Place_Payload() throws IOException {
-	
-		
-		
-		req = given().spec(requestSpecification()).body(testData.addPlacePayload());
-	}
+//	@Given("Add Place Payload")
+//	public void add_Place_Payload() throws IOException {
+//	
+//		
+//		
+//		req = given().spec(requestSpecification()).body(testData.addPlacePayload());
+//	}
 
+	@Given("Add Place Payload {string}, {string}, {string}")
+	public void add_Place_Payload(String name, String website, String language) throws IOException {
+		req = given().spec(requestSpecification()).body(testData.addPlacePayload(name, website, language));
+	}
 	@When("user calls {string} with Post request")
 	public void user_calls_with_Post_request(String string) {
 		ResponseSpecification resp = new ResponseSpecBuilder().expectStatusCode(200).expectContentType(ContentType.JSON)

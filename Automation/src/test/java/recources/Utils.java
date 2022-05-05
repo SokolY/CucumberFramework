@@ -25,10 +25,10 @@ public class Utils {
 		return reqbuild;
 	}
 	
-	public static String getGlobalProperty(String pr) throws IOException {
+	public static String getGlobalProperty(String key) throws IOException {
 		Properties properties = new Properties();
 		FileInputStream fi = new FileInputStream("D:\\FromPC\\DiscD\\Java\\Cucumber\\Automation\\src\\test\\java\\recources\\global.properties");
 		properties.load(fi);
-		return properties.getProperty(pr);
+		return properties.getProperty(key);
 	}
 }

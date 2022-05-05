@@ -5,7 +5,7 @@ import pojo.Location;
 
 public class TestDataBuild {
 
-	public AddPlaceRequest addPlacePayload() {
+	public AddPlaceRequest addPlacePayload(String name, String website, String language) {
 		String[] tp = { "shoe park", "shop" };
 
 		AddPlaceRequest addPlace = new AddPlaceRequest();
@@ -15,12 +15,12 @@ public class TestDataBuild {
 
 		addPlace.setLocation(location);
 		addPlace.setAccuracy(30);
-		addPlace.setName("Frontline house");
+		addPlace.setName(name);
 		addPlace.setPhone_number("(+91) 983 893 3937");
 		addPlace.setAddress("29, side layout, cohen 09");
 		addPlace.setTypes(tp);
-		addPlace.setWebsite("http://google.com");
-		addPlace.setLanguage("French-IN");
+		addPlace.setWebsite(website);
+		addPlace.setLanguage(language);
 		return addPlace;
 	}
 }
