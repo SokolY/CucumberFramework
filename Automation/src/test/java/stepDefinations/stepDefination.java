@@ -18,6 +18,7 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import pojo.AddPlaceRequest;
 import pojo.Location;
+import recources.APIresources;
 import recources.TestDataBuild;
 import recources.Utils;
 
@@ -43,12 +44,30 @@ public class stepDefination extends Utils{
 	public void add_Place_Payload(String name, String website, String language) throws IOException {
 		req = given().spec(requestSpecification()).body(testData.addPlacePayload(name, website, language));
 	}
-	@When("user calls {string} with Post request")
-	public void user_calls_with_Post_request(String string) {
+//	@When("user calls {string} with Post request")
+//	public void user_calls_with_Post_request(String string) {
+//		APIresources resourseAPI = APIresources.valueOf(string);
+//		System.out.println("API resourse is: " + resourseAPI.getResourse());
+//		ResponseSpecification resp = new ResponseSpecBuilder().expectStatusCode(200).expectContentType(ContentType.JSON)
+//				.build();
+//
+//		rs = req.when().post("/maps/api/place/add/json");
+//	}
+	
+	@When("user calls {string} with {string} request")
+	public void user_calls_with_request(String Resourse, String request) {
+		
+		APIresources resourseAPI = APIresources.valueOf(Resourse);
+				System.out.println("API resourse is: " + resourseAPI.getResourse());
 		ResponseSpecification resp = new ResponseSpecBuilder().expectStatusCode(200).expectContentType(ContentType.JSON)
 				.build();
 
-		rs = req.when().post("/maps/api/place/add/json");
+		if(request.equalsIgnoreCase("POST")){
+		rs = req.when().post(resourseAPI.getResourse());
+		}
+		else if(request.equalsIgnoreCase("Get")){
+			rs = req.when().get(resourseAPI.getResourse());
+		}
 	}
 
 	@Then("the API call got success with status code {int}")

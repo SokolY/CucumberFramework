@@ -27,7 +27,7 @@ Body:
     ]
 }
 HTTP/1.1 200 OK
-Date: Thu, 05 May 2022 14:50:37 GMT
+Date: Fri, 06 May 2022 12:23:54 GMT
 Server: Apache/2.4.41 (Ubuntu)
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Methods: POST
@@ -40,8 +40,55 @@ Content-Type: application/json;charset=UTF-8
 
 {
     "status": "OK",
-    "place_id": "41e8d73a414d0569ad2bf20148efe450",
+    "place_id": "c19279cf5e90cca4f3ad021763045f03",
     "scope": "APP",
-    "reference": "97bea1f476926654880dd297b3c5de7b97bea1f476926654880dd297b3c5de7b",
-    "id": "97bea1f476926654880dd297b3c5de7b"
+    "reference": "fe8a30f2431681164a0b23e518242ff3fe8a30f2431681164a0b23e518242ff3",
+    "id": "fe8a30f2431681164a0b23e518242ff3"
+}
+Request method:	POST
+Request URI:	https://rahulshettyacademy.com/maps/api/place/add/json?key=qaclick123
+Proxy:			<none>
+Request params:	<none>
+Query params:	key=qaclick123
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+				Content-Type=application/json
+Cookies:		<none>
+Multiparts:		<none>
+Body:
+{
+    "accuracy": 30,
+    "name": "House",
+    "phone_number": "(+91) 983 893 3937",
+    "address": "29, side layout, cohen 09",
+    "website": "http://i.ua",
+    "language": "English  - ENG",
+    "location": {
+        "lat": -38.383494,
+        "lng": 33.427362
+    },
+    "types": [
+        "shoe park",
+        "shop"
+    ]
+}
+HTTP/1.1 200 OK
+Date: Fri, 06 May 2022 12:23:55 GMT
+Server: Apache/2.4.41 (Ubuntu)
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: POST
+Access-Control-Max-Age: 3600
+Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With
+Content-Length: 194
+Keep-Alive: timeout=5, max=100
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+
+{
+    "status": "OK",
+    "place_id": "281cb8fe544043060857409b9835eb1c",
+    "scope": "APP",
+    "reference": "7e409d7018b12c0ac17905b1cc8a18b17e409d7018b12c0ac17905b1cc8a18b1",
+    "id": "7e409d7018b12c0ac17905b1cc8a18b1"
 }

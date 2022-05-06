@@ -14,15 +14,18 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 
 public class Utils {
-	RequestSpecification reqbuild;
+	public static RequestSpecification reqvestBuild;
 	public RequestSpecification requestSpecification() throws IOException {
+		if(reqvestBuild == null) {
 		PrintStream outstream = new PrintStream(new FileOutputStream("logs.txt"));
-		reqbuild = new RequestSpecBuilder().setBaseUri(getGlobalProperty("baseURI"))
+		reqvestBuild = new RequestSpecBuilder().setBaseUri(getGlobalProperty("baseURI"))
 				.addQueryParam("key", "qaclick123")
 				.addFilter(RequestLoggingFilter.logRequestTo(outstream))
 				.addFilter(ResponseLoggingFilter.logResponseTo(outstream))
 				.setContentType(ContentType.JSON).build();
-		return reqbuild;
+		return reqvestBuild;
+		}
+		return reqvestBuild;
 	}
 	
 	public static String getGlobalProperty(String key) throws IOException {
