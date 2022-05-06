@@ -11,6 +11,8 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 public class Utils {
@@ -33,5 +35,11 @@ public class Utils {
 		FileInputStream fi = new FileInputStream("D:\\FromPC\\DiscD\\Java\\Cucumber\\Automation\\src\\test\\java\\recources\\global.properties");
 		properties.load(fi);
 		return properties.getProperty(key);
+	}
+	
+	public String getExtractedJson(Response response, String key) {
+		String respStr = response.asString();
+		JsonPath respJson = new JsonPath(respStr);
+		return respJson.get(key).toString();
 	}
 }

@@ -6,8 +6,9 @@ When user calls "addPlaceAPI" with "Post" request
 Then the API call got success with status code 200
 And "status" in response body is "OK"
 And "scope" in response body is "APP"
+And verify placeID created maps to "<name>" using "getPlaceAPI"
 
 Examples:
 |name		 |Website	     |Language		|
 |Dacha 		 | http://ukr.com|Ukrainian - UA|
-|House  | http://i.ua   |English  - ENG| 
+#|House  | http://i.ua   |English  - ENG| 

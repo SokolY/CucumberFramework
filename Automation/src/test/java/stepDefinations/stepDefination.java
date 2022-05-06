@@ -73,15 +73,28 @@ public class stepDefination extends Utils{
 	@Then("the API call got success with status code {int}")
 	public void the_API_call_got_success_with_status_code(Integer int1) {
 		parsedResp = rs.then().assertThat().statusCode(200).extract().response().asString();
-		respJson = new JsonPath(parsedResp);
-		System.out.println(parsedResp);
+//		respJson = new JsonPath(parsedResp);
+//		System.out.println(parsedResp);
 	}
 
 	@Then("{string} in response body is {string}")
 	public void in_response_body_is(String responseField, String expResponce) {
-		System.out.println("Actual status is: " + respJson.getString(responseField));
-		respJson.getString(responseField);
-		assertEquals(respJson.getString(responseField), expResponce);
+//		System.out.println("Actual status is: " + respJson.getString(responseField));
+//		respJson.getString(responseField);
+		assertEquals(getExtractedJson(rs, responseField), expResponce);
+	}
+
+	@Then("verify placeID created maps to {string} using {string}")
+	public void verify_placeID_created_maps_to_using(String expactedName, String pathParam) throws IOException {
+		
+		String placeID = getExtractedJson(rs, "place_id");
+		req = given().spec(requestSpecification()).queryParam("place_id", placeID);
+		user_calls_with_request(pathParam, "Get");
+		String actualName = getExtractedJson(rs, "name");
+		System.out.println("Actual name is: " + actualName);
+		assertEquals(actualName, expactedName);
+		
+		
 	}
 
 }
