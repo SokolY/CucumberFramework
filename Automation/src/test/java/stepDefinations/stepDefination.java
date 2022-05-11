@@ -23,7 +23,7 @@ import recources.TestDataBuild;
 import recources.Utils;
 
 //@RunWith(Cucumber.class)
-public class stepDefination extends Utils{
+public class StepDefination extends Utils{
 
 	RequestSpecification req;
 	Response rs;

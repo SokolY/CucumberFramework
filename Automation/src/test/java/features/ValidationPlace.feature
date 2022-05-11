@@ -1,5 +1,6 @@
 Feature: Validation Place API's
 
+@AddPlace
 Scenario Outline: Verify if Place is Added successfully 
 Given Add Place Payload "<name>", "<Website>", "<Language>"
 When user calls "addPlaceAPI" with "Post" request
@@ -13,6 +14,8 @@ Examples:
 |Dacha 		 | http://ukr.com|Ukrainian - UA|
 #|House  | http://i.ua   |English  - ENG| 
 
+
+@DeletePlace
 Scenario: Verify that Delete place is peformed
 
 Given Delete Place Payload
