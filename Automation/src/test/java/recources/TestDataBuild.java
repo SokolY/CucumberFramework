@@ -23,4 +23,16 @@ public class TestDataBuild {
 		addPlace.setLanguage(language);
 		return addPlace;
 	}
+	
+//	public String deletePlacePayload(String placeId) {
+//		return placeId;
+//	}
+
+	public String deletePlacePayload(String placeID) {
+		// TODO Auto-generated method stub
+//		return "    \"place_id\":\""+placeID+"\"   ";
+		return "{\r\n"
+				+ "    \"place_id\":\""+placeID+"\"   	 	\r\n"
+				+ "}";
+	}
 }

@@ -12,3 +12,10 @@ Examples:
 |name		 |Website	     |Language		|
 |Dacha 		 | http://ukr.com|Ukrainian - UA|
 #|House  | http://i.ua   |English  - ENG| 
+
+Scenario: Verify that Delete place is peformed
+
+Given Delete Place Payload
+When user calls "deletePlaceAPI" with "POST" request
+Then the API call got success with status code 200
+And "status" in response body is "OK"

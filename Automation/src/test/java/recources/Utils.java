@@ -37,9 +37,15 @@ public class Utils {
 		return properties.getProperty(key);
 	}
 	
-	public String getExtractedJson(Response response, String key) {
-		String respStr = response.asString();
-		JsonPath respJson = new JsonPath(respStr);
-		return respJson.get(key).toString();
+//	public String getExtractedJson(Response response, String key) {
+//		String respStr = response.asString();
+//		JsonPath respJson = new JsonPath(respStr);
+//		return respJson.get(key).toString();
+//	}
+	public String getExtractedJson(Response response,String key)
+	{
+		  String resp=response.asString();
+		JsonPath   js = new JsonPath(resp);
+		return js.get(key).toString();
 	}
 }

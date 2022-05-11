@@ -31,41 +31,26 @@ public class stepDefination extends Utils{
 	JsonPath respJson;
 	TestDataBuild testData = new TestDataBuild();
 	Utils reqSpec = new Utils();
-
-//	@Given("Add Place Payload")
-//	public void add_Place_Payload() throws IOException {
-//	
-//		
-//		
-//		req = given().spec(requestSpecification()).body(testData.addPlacePayload());
-//	}
+	static String placeID;
 
 	@Given("Add Place Payload {string}, {string}, {string}")
 	public void add_Place_Payload(String name, String website, String language) throws IOException {
 		req = given().spec(requestSpecification()).body(testData.addPlacePayload(name, website, language));
 	}
-//	@When("user calls {string} with Post request")
-//	public void user_calls_with_Post_request(String string) {
-//		APIresources resourseAPI = APIresources.valueOf(string);
-//		System.out.println("API resourse is: " + resourseAPI.getResourse());
-//		ResponseSpecification resp = new ResponseSpecBuilder().expectStatusCode(200).expectContentType(ContentType.JSON)
-//				.build();
-//
-//		rs = req.when().post("/maps/api/place/add/json");
-//	}
+
 	
 	@When("user calls {string} with {string} request")
-	public void user_calls_with_request(String Resourse, String request) {
+	public void user_calls_with_request(String resourse, String requestMethod) {
 		
-		APIresources resourseAPI = APIresources.valueOf(Resourse);
+		APIresources resourseAPI = APIresources.valueOf(resourse);
 				System.out.println("API resourse is: " + resourseAPI.getResourse());
 		ResponseSpecification resp = new ResponseSpecBuilder().expectStatusCode(200).expectContentType(ContentType.JSON)
 				.build();
 
-		if(request.equalsIgnoreCase("POST")){
-		rs = req.when().post(resourseAPI.getResourse());
+		if(requestMethod.equalsIgnoreCase("POST")){
+			rs = req.when().post(resourseAPI.getResourse());
 		}
-		else if(request.equalsIgnoreCase("Get")){
+		else if(requestMethod.equalsIgnoreCase("Get")){
 			rs = req.when().get(resourseAPI.getResourse());
 		}
 	}
@@ -79,15 +64,13 @@ public class stepDefination extends Utils{
 
 	@Then("{string} in response body is {string}")
 	public void in_response_body_is(String responseField, String expResponce) {
-//		System.out.println("Actual status is: " + respJson.getString(responseField));
-//		respJson.getString(responseField);
 		assertEquals(getExtractedJson(rs, responseField), expResponce);
 	}
 
 	@Then("verify placeID created maps to {string} using {string}")
 	public void verify_placeID_created_maps_to_using(String expactedName, String pathParam) throws IOException {
 		
-		String placeID = getExtractedJson(rs, "place_id");
+		placeID = getExtractedJson(rs, "place_id");
 		req = given().spec(requestSpecification()).queryParam("place_id", placeID);
 		user_calls_with_request(pathParam, "Get");
 		String actualName = getExtractedJson(rs, "name");
@@ -95,6 +78,14 @@ public class stepDefination extends Utils{
 		assertEquals(actualName, expactedName);
 		
 		
+	}
+
+	@Given("Delete Place Payload")
+	public void delete_Place_Payload() throws IOException {
+		System.out.println("Delete Place should be performed: " + testData.deletePlacePayload(placeID));
+		req = given().spec(requestSpecification()).body(testData.deletePlacePayload(placeID));
+		
+//		req = given().spec(requestSpecification()).body("c0ee9cb925706ba9d7964bf98c6aec64");
 	}
 
 }
