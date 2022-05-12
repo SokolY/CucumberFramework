@@ -64,7 +64,7 @@ public class StepDefination extends Utils{
 
 	@Then("{string} in response body is {string}")
 	public void in_response_body_is(String responseField, String expResponce) {
-		assertEquals(getExtractedJson(rs, responseField), expResponce);
+		assertEquals(expResponce, getExtractedJson(rs, responseField));
 	}
 
 	@Then("verify placeID created maps to {string} using {string}")

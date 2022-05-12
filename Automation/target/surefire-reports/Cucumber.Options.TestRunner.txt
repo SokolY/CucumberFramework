@@ -1,0 +1,11 @@
+-------------------------------------------------------------------------------
+Test set: Cucumber.Options.TestRunner
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 8.543 sec <<< FAILURE!
+Verify that Delete place is peformed(Validation Place API's)  Time elapsed: 1.083 sec  <<< FAILURE!
+org.junit.ComparisonFailure: expected:<[God]> but was:<[OK]>
+	at org.junit.Assert.assertEquals(Assert.java:115)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at stepDefinations.StepDefination.in_response_body_is(StepDefination.java:67)
+	at ?."status" in response body is "God"(file:///D:/FromPC/DiscD/Java/Cucumber/Automation/src/test/java/features/ValidationPlace.feature:24)
+
